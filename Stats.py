@@ -1,5 +1,6 @@
 import requests
 api = 'INSERT_KEY_HERE'
+username = 'ThatBananaKing'
 
 
 def uuid(ign):
@@ -33,4 +34,4 @@ def stats(ign, key):
 
 
 
-print(stats('ThatBananaKing', api))
+print(stats(username, api))

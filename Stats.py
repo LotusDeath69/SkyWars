@@ -12,7 +12,7 @@ Ranked: (1v1)
 
 total_games_played = wins + losses 
 EXP leveling: https://hypixel.fandom.com/wiki/SkyWars#:~:text=In%20SkyWars%2C%20players%20spawn%20on,their%20own%20loot%20when%20killed.
-tl.dr from lvl 1 - 12: 15k required and after lvl 12: 10k per level
+tl.dr from lvl 1 - 12: 15k required in total and after lvl 12: 10k per level
 """
 
 

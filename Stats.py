@@ -12,7 +12,7 @@ Ranked: (1v1)
 
 total_games_played = wins + losses 
 EXP leveling: https://hypixel.fandom.com/wiki/SkyWars#:~:text=In%20SkyWars%2C%20players%20spawn%20on,their%20own%20loot%20when%20killed.
-tl.dr from lvl 1 - 12: 15k required in total and after lvl 12: 10k per level
+tl.dr from lvl 1 - 12: 15k required and after lvl 12: 10k per level
 """
 
 
@@ -60,12 +60,17 @@ def calculateLevel(exp):
 
 def stats(ign, key):
     data = requests.get(f'https://api.hypixel.net/player?key={key}&uuid={uuid(ign)}').json()
-    wins = data['player']['stats']['SkyWars']['wins']
-    losses = data['player']['stats']['SkyWars']['losses']
+    try:
+        wins = data['player']['stats']['SkyWars']['wins']
+        losses = data['player']['stats']['SkyWars']['losses']
+    except KeyError:
+        print(f'{ign} has no skywars stats')
+        exit()
     win_rate = formatPercentage(round(wins / (wins + losses), 2))
 
     kills = data['player']['stats']['SkyWars']['kills']
     deaths = data['player']['stats']['SkyWars']['deaths']
+    assists =  data['player']['stats']['SkyWars']['assists']
     kill_death_ratio = round(kills / deaths, 2)
 
     experience = data['player']['stats']['SkyWars']['skywars_experience']
@@ -75,7 +80,7 @@ def stats(ign, key):
     
 
     return f"Levels: {level}\nWins: {wins}\nLosses: {losses}\nWin Rate: {win_rate}" \
-           f"\n\nKills: {kills}\nDeaths: {deaths}\nK/D Ratio: {kill_death_ratio}\nGames Played: " \
+           f"\n\nKills: {kills}\nDeaths: {deaths}\nAssists: {assists}\nK/D Ratio: {kill_death_ratio}\nGames Played: " \
            f"{games_played}\nCurrent Winstreak: {current_winstreak}" \
 
 
